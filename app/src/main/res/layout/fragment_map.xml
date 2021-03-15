@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.gms.maps.MapView
+        android:clickable="true"
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true" />
+
+    <com.kaonstudio.testlocationtracker.ui.map.CustomBottomSheet
+        android:layout_gravity="bottom"
+        android:id="@+id/fragment_map_bottom_sheet"
+        android:minHeight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="270dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestLocationTracker</string>
+
+    <!-- Map Fragment -->
+    <string name="fragment_map_sheet_title">Текущее отслеживание</string>
+    <string name="fragment_map_start">СТАРТ</string>
+    <string name="fragment_map_stop">СТОП</string>
+    <string name="fragment_map_clear">ОЧИСТИТЬ</string>
+    <string name="fragment_map_cleared_toast">Координаты удалены</string>
+    <string name="fragment_map_started_toast">Отслеживание началось</string>
+    <string name="fragment_map_stop_toast">Отслеживание закончилось</string>
+    <string name="fragment_map_permission_denied">Приложению необходим доступ к геоданным для корректной работы.</string>
+
+    <!-- Fragment history -->
+    <string name="fragment_history_delete_all">Удалить все треки</string>
+    <string name="fragment_history_is_tracking">Нельзя выбрать трек, отслеживание включено</string>
+
+    <!-- Dialog save to database  -->
+    <string name="dialog_save_to_db_title">Сохранить трек на устройстве</string>
+    <string name="dialog_save_to_db_message">Укажите название для успешного сохранения</string>
+    <string name="dialog_save_to_db_hint">Ввести новое название</string>
+    <string name="dialog_save_to_db_save">Сохранить</string>
+    <string name="dialog_save_to_db_cancel">Отмена</string>
+    <string name="dialog_save_to_db_success_toast">трек сохранен</string>
+
+
+    <!-- Dialog location permission -->
+    <string name="dialog_location_permission_title">Разрешить этому приложению доступ к вашим геоданным?</string>
+    <string name="dialog_location_permission_allow">Разрешить</string>
+    <string name="dialog_location_permission_deny">Отказать</string>
+
+    <!-- Item coordinates -->
+    <string name="item_coordinates_lat">Широта: %1$f</string>
+    <string name="item_coordinates_long">Долгота: %1$f</string>
+
+    <!-- Item track -->
+    <string name="item_track_name">Название: %1$s</string>
+    <string name="item_track_count">Количество координат: %1$d</string>
+    <string name="item_track_date">Дата трека: %1$s</string>
+
+    <!-- Tracking Service -->
+    <string name="service_title">Отслеживание включено</string>
+
+    <!-- Menu -->
+    <string name="menu_map">Карта</string>
+    <string name="menu_history">История</string>
+</resources>

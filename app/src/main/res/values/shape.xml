@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ShapeAppearance.DefaultTheme.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <!--Shape Appearance for medium components like cards, alert dialogs-->
+    <style name="ShapeAppearance.DefaultTheme.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <!--Shape Appearance for large components like side and bottom navigation drawers-->
+    <style name="ShapeAppearance.DefaultTheme.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.Rect" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.StartRounded.Small" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">4dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.StartRounded.Medium" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.StartRounded.Large" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.EndRounded.Small" parent="">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">4dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">4dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.EndRounded.Medium" parent="">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.EndRounded.Large" parent="">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.BottomRounded.Small" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">4dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.BottomRounded.Medium" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.BottomRounded.Large" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.TopRounded.Small" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">4dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">4dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.TopRounded.Middle" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.TopRounded.Large" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.DefaultTheme.TopRounded.ExtraLarge" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">64dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">64dp</item>
+    </style>
+</resources>

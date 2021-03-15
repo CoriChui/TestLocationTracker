@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mapFragment">
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.kaonstudio.testlocationtracker.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.kaonstudio.testlocationtracker.ui.history.HistoryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_history" />
+
+    <action
+        android:id="@+id/action_global_mapFragment"
+        app:destination="@id/mapFragment"
+        app:launchSingleTop="true"/>
+
+    <dialog
+        android:id="@+id/saveToDatabaseDialog"
+        android:name="com.kaonstudio.testlocationtracker.ui.map.SaveToDatabaseDialog"
+        tools:layout="@layout/dialog_save_to_db"/>
+</navigation>

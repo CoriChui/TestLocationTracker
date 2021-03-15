@@ -1,0 +1,112 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="140dp"
+    android:height="300dp"
+    android:viewportWidth="1440"
+    android:viewportHeight="3040">
+    <path
+        android:fillColor="@color/purple_500"
+        android:pathData="M0,0h1440v3040h-1440z" />
+    <path android:pathData="M51,3040L3091,0L3184,0L144,3040z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="3184"
+                android:endY="0"
+                android:startX="51"
+                android:startY="3040"
+                android:type="linear">
+                <item
+                    android:color="#FF000000"
+                    android:offset="0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="0.66" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M561.2,3040L3601.2,0L4219.2,0L1179.2,3040z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="4219.2"
+                android:endY="0"
+                android:startX="561.2"
+                android:startY="3040"
+                android:type="linear">
+                <item
+                    android:color="#FF000000"
+                    android:offset="0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="0.66" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M1393,3040L-1647,0L-1944,0L1096,3040z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="-1944"
+                android:endY="0"
+                android:startX="1393"
+                android:startY="3040"
+                android:type="linear">
+                <item
+                    android:color="#FF000000"
+                    android:offset="0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="0.66" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M954.8,3040L-2085.2,0L-2545.7,0L494.3,3040z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="-2545.7"
+                android:endY="0"
+                android:startX="954.8"
+                android:startY="3040"
+                android:type="linear">
+                <item
+                    android:color="#FF000000"
+                    android:offset="0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="0.66" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M171.56,3040L1440,1771.56L1440,3040z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="1440"
+                android:endY="1771.56"
+                android:startX="171.56"
+                android:startY="3040"
+                android:type="linear">
+                <item
+                    android:color="#FF000000"
+                    android:offset="0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="0.66" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M0,3040L1268.44,3040L0,1771.56z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="0"
+                android:endY="1771.56"
+                android:startX="1268.44"
+                android:startY="3040"
+                android:type="linear">
+                <item
+                    android:color="#FF000000"
+                    android:offset="0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="0.66" />
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>
