@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
@@ -64,6 +65,8 @@ public class MapFragment extends Fragment implements CustomBottomSheet.OnClickLi
     private CompositeDisposable compositeDisposable;
     private boolean isFragmentFirstLaunch = true;
     private boolean isTracking = false;
+    private NavBackStackEntry navBackStackEntry;
+    private LifecycleEventObserver observer;
     MainViewModel viewModel;
 
     @Inject
@@ -149,6 +152,7 @@ public class MapFragment extends Fragment implements CustomBottomSheet.OnClickLi
         map = null;
         compositeDisposable.clear();
         binding = null;
+        navBackStackEntry.getLifecycle().removeObserver(observer);
         super.onDestroyView();
     }
 
@@ -167,53 +171,44 @@ public class MapFragment extends Fragment implements CustomBottomSheet.OnClickLi
 
     private void initOnBackStackObserver() {
         NavController navController = NavHostFragment.findNavController(this);
-        final NavBackStackEntry navBackStackEntry = navController.getBackStackEntry(R.id.mapFragment);
-        final LifecycleEventObserver observer = (source, event) -> {
-            if (event.equals(Lifecycle.Event.ON_RESUME)
-                    && navBackStackEntry.getSavedStateHandle().contains(SAVE_TO_DATABASE_KEY)) {
-                final String result = Objects.requireNonNull(navBackStackEntry.getSavedStateHandle().get(SAVE_TO_DATABASE_KEY));
-                viewModel.getCoordinatesOnce()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new SingleObserver<List<CoordinatesCache>>() {
-                            @Override
-                            public void onSubscribe(@NotNull Disposable d) {
-                                compositeDisposable.add(d);
-                            }
+        navBackStackEntry = navController.getBackStackEntry(R.id.mapFragment);
+         observer = (source, event) -> {
+             if (event.equals(Lifecycle.Event.ON_RESUME)
+                     && navBackStackEntry.getSavedStateHandle().contains(SAVE_TO_DATABASE_KEY)) {
+                 final String result = Objects.requireNonNull(navBackStackEntry.getSavedStateHandle().get(SAVE_TO_DATABASE_KEY));
+                 viewModel.getCoordinatesOnce()
+                         .subscribeOn(Schedulers.io())
+                         .observeOn(AndroidSchedulers.mainThread())
+                         .subscribe(new SingleObserver<List<CoordinatesCache>>() {
+                             @Override
+                             public void onSubscribe(@NotNull Disposable d) {
+                                 compositeDisposable.add(d);
+                             }
 
-                            @Override
-                            public void onSuccess(@NotNull List<CoordinatesCache> coordinatesCaches) {
-                                final TrackCache track = new TrackCache(result, cacheMapper.mapFromEntityList(coordinatesCaches), coordinatesCaches.get(0).getTimeInMillis());
-                                viewModel.insertTrack(track);
-                                Toast.makeText(requireContext(), getString(R.string.dialog_save_to_db_success_toast), Toast.LENGTH_SHORT).show();
-                            }
+                             @Override
+                             public void onSuccess(@NotNull List<CoordinatesCache> coordinatesCaches) {
+                                 final TrackCache track = new TrackCache(result, cacheMapper.mapFromEntityList(coordinatesCaches), coordinatesCaches.get(0).getTimeInMillis());
+                                 viewModel.insertTrack(track);
+                                 Toast.makeText(requireContext(), getString(R.string.dialog_save_to_db_success_toast), Toast.LENGTH_SHORT).show();
+                             }
 
-                            @Override
-                            public void onError(@NotNull Throwable e) {
+                             @Override
+                             public void onError(@NotNull Throwable e) {
 
-                            }
-                        });
-                Objects.requireNonNull(navController.getCurrentBackStackEntry()).getSavedStateHandle().remove(SAVE_TO_DATABASE_KEY);
-            }
-        };
+                             }
+                         });
+                 Objects.requireNonNull(navController.getCurrentBackStackEntry()).getSavedStateHandle().remove(SAVE_TO_DATABASE_KEY);
+             }
+         };
         navBackStackEntry.getLifecycle().addObserver(observer);
-        getViewLifecycleOwner().getLifecycle().addObserver((LifecycleEventObserver) (source, event) -> {
-            if (event.equals(Lifecycle.Event.ON_DESTROY)) {
-                navBackStackEntry.getLifecycle().removeObserver(observer);
-            }
-        });
     }
 
     private void observeIsTracking() {
-        viewModel.observeIsTracking().observe(getViewLifecycleOwner(), aBoolean -> {
-            isTracking = aBoolean;
-        });
+        viewModel.observeIsTracking().observe(getViewLifecycleOwner(), aBoolean -> isTracking = aBoolean);
     }
 
     private void observeTrackingServiceData() {
-        TrackingService.coordinates.observe(getViewLifecycleOwner(), coordinatesCaches -> {
-            viewModel.insertCoordinatesList(coordinatesCaches);
-        });
+        TrackingService.coordinates.observe(getViewLifecycleOwner(), coordinatesCaches -> viewModel.insertCoordinatesList(coordinatesCaches));
     }
 
     private void observeCoordinateData() {
@@ -277,25 +272,18 @@ public class MapFragment extends Fragment implements CustomBottomSheet.OnClickLi
                 return false;
             }
         }
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-            if (!checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) || !checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, MapFragment.LOCATION_PERMISSION_REQUEST_CDDE);
-                return false;
-            }
-            if (!checkPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
-                new MaterialAlertDialogBuilder(requireContext())
-                        .setTitle(getString(R.string.dialog_location_permission_title))
-                        .setPositiveButton(getString(R.string.dialog_location_permission_allow), (dialog, which) -> {
-                            requestPermissions(new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, MapFragment.LOCATION_PERMISSION_REQUEST_CDDE);
-                        })
-                        .setNegativeButton(getString(R.string.dialog_location_permission_deny), (dialog, which) -> {
-                            dialog.dismiss();
-                        })
-                        .create()
-                        .show();
-                return false;
-            }
-            return true;
+        if (!checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) || !checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, MapFragment.LOCATION_PERMISSION_REQUEST_CDDE);
+            return false;
+        }
+        if (!checkPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(getString(R.string.dialog_location_permission_title))
+                    .setPositiveButton(getString(R.string.dialog_location_permission_allow), (dialog, which) -> requestPermissions(new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, MapFragment.LOCATION_PERMISSION_REQUEST_CDDE))
+                    .setNegativeButton(getString(R.string.dialog_location_permission_deny), (dialog, which) -> dialog.dismiss())
+                    .create()
+                    .show();
+            return false;
         }
         return true;
     }
